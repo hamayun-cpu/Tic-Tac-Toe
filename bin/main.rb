@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: false
 
 puts "\t\t\t\tHello to Tic Tac Toe game Build by Hamayun and Asad!"
 puts "\n"
