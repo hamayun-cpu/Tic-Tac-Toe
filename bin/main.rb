@@ -1,29 +1,39 @@
 #!/usr/bin/env ruby
 puts "\t\t\t\tHello to Tic Tac Toe game Build by Hamayun and Asad!"
 puts "\n"
-puts "Hey player-1, please enter your name:"
-ply_1 = gets.chomp
+puts 'Hey player-1, please enter your name'
+ply_one = gets.chomp
 
-puts "Hey player-2, please enter your name:"
-ply_2 = gets.chomp
+puts 'Hey player-2, please enter your name'
+ply_two = gets.chomp
+
 puts "\n"
-puts "#{ply_1}, you have got X"
-puts "#{ply_2}, you have got O"
+puts "#{ply_one}, you have got X"
+puts "#{ply_two}, you have got O"
 puts "\n"
-puts "****Gameboard is displayed****"
+puts '****Gameboard is displayed****'
 
-puts "NOTE: The player who wants to mark the box, just write its box number."
+puts 'NOTE: The player who wants to mark the box, just write its box number.'
 
-puts "#{ply_1}, you got the first turn"
+puts "#{ply_one}, you got the first turn"
+
+avail_moves = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 i = 0
 while i < 9
-    if i.even?
-        puts "#{ply_1} choose your box."
-    else
-        puts "#{ply_2} choose your box."
-    end
-    box = gets.chomp.to_i
-    puts "****Gameboard is displayed****"
-    i += 1
+  puts 'available moves are : '
+  avail_moves.each do |num|
+    print "  #{num}" if num >= 0 && num < 9
+  end
+  puts "\n"
+  if i.even?
+    puts "#{ply_one} choose your box."
+  else
+    puts "#{ply_two} choose your box."
+  end
+  box = gets.chomp.to_i
+  ans = avail_moves.index(box)
+  avail_moves[ans] = -1
+  puts '****Gameboard is displayed****'
+  i += 1
 end
