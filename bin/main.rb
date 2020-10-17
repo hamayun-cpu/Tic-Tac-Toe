@@ -1,4 +1,4 @@
-#!/use/bin/env ruby
+#! /use/bin/env ruby
 
 puts "\t\t\t\tHello to Tic Tac Toe game Build by Hamayun and Asad!"
 puts "\n"
