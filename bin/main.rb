@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby # rubocop:disable Style/FrozenStringLiteralComment
+# !/usr/bin/env ruby
 
 puts "\t\t\t\tHello to Tic Tac Toe game Build by Hamayun and Asad!"
 puts "\n"
