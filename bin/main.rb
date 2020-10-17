@@ -54,8 +54,10 @@ while game_on
   if avail_moves.include?(box)
     ans = avail_moves.index(box)
     avail_moves[ans] = -1
+
     board[ans] = 'X' if i.even?
     board[ans] = 'O' unless i.even?
+
     i += 1
   else
     puts 'Invalid Move'
