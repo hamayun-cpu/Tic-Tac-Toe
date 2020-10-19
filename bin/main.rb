@@ -1,5 +1,5 @@
 # !/usr/bin/env ruby
-require '../lib/logic.rb'
+require './lib/logic.rb'
 
 puts "\t\t\t\t*****Hello to Tic Tac Toe game Build by Hamayun and Asad!*****"
 
