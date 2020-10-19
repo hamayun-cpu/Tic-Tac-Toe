@@ -1,76 +1,92 @@
 # !/usr/bin/env ruby
+require './lib/logic.rb'
 
-puts "\t\t\t\tHello to Tic Tac Toe game Build by Hamayun and Asad!"
-puts "\n"
+puts "\t\t\t\t*****Hello to Tic Tac Toe game Build by Hamayun and Asad!*****"
+
+player_one = Player.new
+player_two = Player.new
+
 dif = false
-
 while dif == false
-  puts 'Hey player-1, please enter your name'
-  ply_one = gets.chomp
+  puts "\nHey player-1, please enter your name"
+  name1 = gets.chomp
 
   puts 'Hey player-2, please enter your name'
-  ply_two = gets.chomp
+  name2 = gets.chomp
 
-  dif = true if !ply_one.empty? && !ply_two.empty? && ply_one != ply_two
-  puts 'Wrong Input' if dif == false
+  if name1 != name2 && !name1.empty? && !name2.empty?
+    dif = true
+    player_one.name = name1
+    player_two.name = name2
+  end
+  puts "\n***Wrong input of names. Please Enter Again***" if dif == false
+
 end
 
-def printt(arr)
-  puts "\t\t\t******************************"
-  puts "\t\t\t\t #{arr[0]} | #{arr[1]} | #{arr[2]}"
-  puts "\t\t\t\t-----------"
-  puts "\t\t\t\t #{arr[3]} | #{arr[4]} | #{arr[5]}"
-  puts "\t\t\t\t-----------"
-  puts "\t\t\t\t #{arr[6]} | #{arr[7]} | #{arr[8]}"
-  puts "\t\t\t******************************"
-end
-
-puts "\n"
-puts "#{ply_one}, you have got X"
-puts "#{ply_two}, you have got O"
-puts "\n"
-board = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-puts 'NOTE: The player who wants to mark the box, just write its box number.'
-printt(board)
-
-puts "#{ply_one}, you got the first turn"
-
-avail_moves = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+player_one.sign = 'X'
+player_two.sign = 'O'
+puts "\n#{player_one.name}, you have got X"
+puts "#{player_two.name}, you have got O"
 
 game_on = true
-i = 0
+
 while game_on
-  puts 'available moves are : '
-  avail_moves.each do |num|
-    print "  #{num}" if num >= 0 && num < 9
-  end
-  puts "\n"
-  if i.even?
-    puts "#{ply_one} choose your box."
-  else
-    puts "#{ply_two} choose your box."
-  end
-  box = gets.chomp.to_i
-  if avail_moves.include?(box)
-    ans = avail_moves.index(box)
-    avail_moves[ans] = -1
+  new_game = Game.new
 
-    board[ans] = 'X' if i.even?
-    board[ans] = 'O' unless i.even?
+  new_game.display
 
-    i += 1
-  else
-    puts 'Invalid Move'
+  puts 'NOTE: The player who wants to mark the box, just write its box number.'
+
+  puts "\n*****#{player_one.name}, you got the first turn*****"
+
+  game_state = false
+  turn = 0
+  while turn < 9
+
+    ans = false
+    while ans == false
+      puts "\nAvailable moves are : "
+      new_game.available_moves
+      puts "\n"
+
+      if turn.even? # rubocop:disable Metrics/BlockNesting
+        puts "#{player_one.name} choose your box."
+      else
+        puts "#{player_two.name} choose your box."
+      end
+
+      box = gets.chomp.to_i
+
+      ans = new_game.move(box, player_one) if turn.even? # rubocop:disable Metrics/BlockNesting
+      ans = new_game.move(box, player_two) unless turn.even? # rubocop:disable Metrics/BlockNesting
+
+      puts "\n***Invalid Move***\n" unless ans # rubocop:disable Metrics/BlockNesting
+
+    end
+
+    new_game.display
+
+    game_state = new_game.game_status(player_one)
+    if game_state
+      puts "\n\t\t\t***Congratulations #{player_one.name}. You Won***"
+      break
+    end
+    game_state = new_game.game_status(player_two)
+    if game_state
+      puts "\n\t\t\t***Congratulations #{player_two.name}. You Won***"
+      break
+    end
+
+    turn += 1
+
   end
-  printt(board)
 
-  if i > 8
-    puts "#{ply_two} WON"
-    break
-  end
+  puts 'The Game is Draw' unless game_state
 
-  game_on = false if i == 7
+  puts "\nDo You Want To Play Again? Press Y/y for Yes, N/n for No"
+
+  us_ans = gets.chomp.upcase
+
+  game_on = false if us_ans == 'N'
 
 end
-
-puts 'Its a DRAW' unless game_on
