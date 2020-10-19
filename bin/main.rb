@@ -1,6 +1,16 @@
 # !/usr/bin/env ruby
 require './lib/logic.rb'
 
+def display(arr)
+  puts "\t\t\t******************************"
+  puts "\t\t\t\t #{arr[0]} | #{arr[1]} | #{arr[2]}"
+  puts "\t\t\t\t-----------"
+  puts "\t\t\t\t #{arr[3]} | #{arr[4]} | #{arr[5]}"
+  puts "\t\t\t\t-----------"
+  puts "\t\t\t\t #{arr[6]} | #{arr[7]} | #{arr[8]}"
+  puts "\t\t\t******************************"
+end
+
 puts "\t\t\t\t*****Hello to Tic Tac Toe game Build by Hamayun and Asad!*****"
 
 player_one = Player.new
@@ -33,7 +43,7 @@ game_on = true
 while game_on
   new_game = Game.new
 
-  new_game.display
+  display(new_game.board)
 
   puts 'NOTE: The player who wants to mark the box, just write its box number.'
 
@@ -64,7 +74,7 @@ while game_on
 
     end
 
-    new_game.display
+    display(new_game.board)
 
     game_state = new_game.game_status(player_one)
     if game_state
