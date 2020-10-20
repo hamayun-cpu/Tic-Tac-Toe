@@ -1,5 +1,7 @@
 # Class of Game
 class Game
+  attr_reader :board
+
   def initialize
     @board = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     @avail_moves = [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -20,16 +22,6 @@ class Game
     else
       false
     end
-  end
-
-  def display
-    puts "\t\t\t******************************"
-    puts "\t\t\t\t #{@board[0]} | #{@board[1]} | #{@board[2]}"
-    puts "\t\t\t\t-----------"
-    puts "\t\t\t\t #{@board[3]} | #{@board[4]} | #{@board[5]}"
-    puts "\t\t\t\t-----------"
-    puts "\t\t\t\t #{@board[6]} | #{@board[7]} | #{@board[8]}"
-    puts "\t\t\t******************************"
   end
 
   def game_status(player)
