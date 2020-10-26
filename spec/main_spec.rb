@@ -2,13 +2,15 @@ require_relative '../lib/logic.rb'
 
 describe Player do
   describe '#initialize' do
+    let(:player) { Player.new }
+
     it 'Checks that is name initialized as empty string' do
-      player = Player.new
+      # player = Player.new
       expect(player.name).to eql('')
     end
 
     it 'Checks that is sign initialized as empty string' do
-      player = Player.new
+      # player = Player.new
       expect(player.sign).to eql('')
     end
   end
