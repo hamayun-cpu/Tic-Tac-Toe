@@ -1,4 +1,4 @@
-require './lib/logic'
+require_relative '../lib/logic.rb'
 
 describe Game do # rubocop:disable Metrics/BlockLength
   describe '#available_moves' do
