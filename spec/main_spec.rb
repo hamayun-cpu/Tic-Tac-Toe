@@ -1,6 +1,6 @@
 require './lib/logic'
 
-describe Game do
+describe Game do # rubocop:disable Metrics/BlockLength
   describe '#available_moves' do
     it 'print available moves' do
       game = Game.new
@@ -18,6 +18,12 @@ describe Game do
       player.sign = 'X'
       expect(game.move(2, player)).to eql(true)
     end
+
+    it 'verify the move and mark the board' do
+      player.name = 'hamayun'
+      player.sign = 'X'
+      expect(game.move(12, player)).to eql(false)
+    end
   end
 
   describe '#game_status' do
@@ -29,6 +35,15 @@ describe Game do
       player.name = 'hamayun'
       player.sign = 'X'
       expect(game.game_status(player)).to eql(false)
+    end
+
+    it 'return true if game is won by palyer and vice versa' do
+      player.name = 'hamayun'
+      player.sign = 'X'
+      game.board[0] = 'X'
+      game.board[1] = 'X'
+      game.board[2] = 'X'
+      expect(game.game_status(player)).to eql(true)
     end
   end
 end
