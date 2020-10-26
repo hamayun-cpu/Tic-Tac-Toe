@@ -1,6 +1,27 @@
 require_relative '../lib/logic.rb'
 
+describe Player do
+  describe '#initialize' do
+    it 'Checks that is name initialized as empty string' do
+      player = Player.new
+      expect(player.name).to eql('')
+    end
+
+    it 'Checks that is sign initialized as empty string' do
+      player = Player.new
+      expect(player.sign).to eql('')
+    end
+  end
+end
+
 describe Game do
+  describe '#initialize' do
+    it 'print available moves' do
+      game = Game.new
+      expect(game.board).to eql([0, 1, 2, 3, 4, 5, 6, 7, 8])
+    end
+  end
+
   describe '#available_moves' do
     it 'print available moves' do
       game = Game.new
@@ -13,13 +34,13 @@ describe Game do
 
     let(:game) { Game.new }
 
-    it 'verify the move and mark the board' do
+    it 'return true if the movement of player is valid' do
       player.name = 'hamayun'
       player.sign = 'X'
       expect(game.move(2, player)).to eql(true)
     end
 
-    it 'verify the move and mark the board' do
+    it 'return false if the movement of player is not valid' do
       player.name = 'hamayun'
       player.sign = 'X'
       expect(game.move(12, player)).to eql(false)
@@ -31,13 +52,13 @@ describe Game do
 
     let(:game) { Game.new }
 
-    it 'return true if game is won by palyer and vice versa' do
+    it 'return true if game is won by palyer' do
       player.name = 'hamayun'
       player.sign = 'X'
       expect(game.game_status(player)).to eql(false)
     end
 
-    it 'return true if game is won by palyer and vice versa' do
+    it 'return false if game is not won won by palyer' do
       player.name = 'hamayun'
       player.sign = 'X'
       game.board[0] = 'X'
