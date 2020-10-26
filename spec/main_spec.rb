@@ -53,14 +53,13 @@ describe Game do
     let(:player) { Player.new }
 
     let(:game) { Game.new }
-
-    it 'return true if game is won by palyer' do
+    it 'return false if game is not won by player' do
       player.name = 'hamayun'
       player.sign = 'X'
       expect(game.game_status(player)).to eql(false)
     end
 
-    it 'return false if game is not won won by palyer' do
+    it 'return true if game is won by player' do
       player.name = 'hamayun'
       player.sign = 'X'
       game.board[0] = 'X'
